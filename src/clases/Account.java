@@ -5,13 +5,14 @@
  */
 package clases;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author 2dam
  */
-public class Account {
+public class Account implements Serializable{
     
     private int id;
     private String description;
@@ -19,6 +20,67 @@ public class Account {
     private float creditLine;
     private float beginBalance;
     private LocalDateTime beginBalanceTimestamp;
-    private char type;
+    private int type;
+
+    public Account() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public float getBalance() {
+        return balance;
+    }
+
+    public float getCreditLine() {
+        return creditLine;
+    }
+
+    public float getBeginBalance() {
+        return beginBalance;
+    }
+
+    public LocalDateTime getBeginBalanceTimestamp() {
+        return beginBalanceTimestamp;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
+    }
+
+    public void setCreditLine(float creditLine) {
+        this.creditLine = creditLine;
+    }
+
+    public void setBeginBalance(float beginBalance) {
+        this.beginBalance = beginBalance;
+    }
+
+    public void setBeginBalanceTimestamp(LocalDateTime beginBalanceTimestamp) {
+        this.beginBalanceTimestamp = beginBalanceTimestamp;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+    
+    
     
 }
