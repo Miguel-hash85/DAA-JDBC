@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
 
-public abstract class DBConnection {
+public class DBConnection {
 
 	protected ResourceBundle configFile;
 	protected String url;
@@ -23,7 +23,7 @@ public abstract class DBConnection {
 		ResourceBundle rb = ResourceBundle.getBundle("the bundle name", your_locale, loader);*/
 		
 		
-		configFile = ResourceBundle.getBundle("model/config");
+		configFile = ResourceBundle.getBundle("clases.config");
 		url = configFile.getString("URL");
 		user = configFile.getString("USER");
 		pass = configFile.getString("PASSWORD");
@@ -31,17 +31,17 @@ public abstract class DBConnection {
 	
 	
 	
-	public void openConnection() throws Exception{
+	public Connection openConnection() throws Exception{
 		con = DriverManager.getConnection(url, user, pass);
 		//String url = "jdbc:mysql://localhost/nombreBaseDatos";
 		//String url ="jdbc:mysql://localhost:3306/agency?serverTimezone=Europe/Madrid&useSSL=false";
 		//con =  DriverManager.getConnection(url+"?" +"user=____&password=_____");
 		//con =  DriverManager.getConnection(url,"root" ,"abcd*1234");
-
+                return con;
 			
 		}
 	
-	public void closeConnection() throws Exception{
+	public void closeConnection(PreparedStatement stmt, Connection con) throws Exception{
 		if (stmt != null) 		
 			stmt.close();
 		
