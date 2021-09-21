@@ -5,18 +5,27 @@
  */
 package application;
 
+
+import connection.DBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author 2dam
  */
-public class Main {
+public class Main{
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        //prueba
+        
+        
+        
     }
     
 }
