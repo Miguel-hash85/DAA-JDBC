@@ -15,6 +15,7 @@ public interface CustomerDao {
     
     public void createCustomer (Customer customer) throws Exception;
     public Customer checkCustomer (String customerId)throws Exception;
-    public ArrayList<Account> checkCustomerAccounts (String customerId)throws Exception;
+    public void checkCustomerAccounts (String customerId)throws Exception;
+    public ArrayList<Account> getAccounts(ArrayList<CustomerAccount> account)throws Exception;
     
 }
