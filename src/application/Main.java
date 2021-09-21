@@ -5,6 +5,7 @@
  */
 package application;
 
+
 import clases.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,33 +24,7 @@ public class Main{
      */
     public static void main(String[] args) {
         
-        PreparedStatement stmt=null;
-        ResultSet resultSet=null;
-        DBConnection con=new DBConnection();
-        Connection conector = null;
         
-        String select="select id from account where type='true'";
-        
-        try {
-            conector=con.openConnection();
-            stmt = conector.prepareStatement(select);
-            resultSet=stmt.executeQuery();
-            if(resultSet.next()){
-                System.out.println(resultSet.getString("id"));
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            try {
-                con.closeConnection(stmt,conector);
-            } catch (Exception ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
-        
-        System.out.println(select);
         
     }
     
