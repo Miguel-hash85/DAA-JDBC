@@ -12,7 +12,8 @@ import java.util.Set;
  * @author 2dam
  */
 public interface AccountDao {
-    public void addCustomerToAccount(String idClient) throws Exception;
+    public void addCustomerToAccount(int idClient,int idAccount) throws Exception;
     public void createAccount(Account account) throws Exception;
     public Account consultAccountDetails(int idAccount) throws Exception;
+    public void listAccountsId() throws Exception;
 }

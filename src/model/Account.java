@@ -15,11 +15,11 @@ public class Account {
     
     private int id;
     private String description;
-    private float balance;
-    private float creditLine;
-    private float beginBalance;
+    private double balance;
+    private double creditLine;
+    private double beginBalance;
     private LocalDateTime beginBalanceTimestamp;
-    private char type;
+    private int type;
 
     public int getId() {
         return id;
@@ -37,27 +37,27 @@ public class Account {
         this.description = description;
     }
 
-    public float getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 
-    public float getCreditLine() {
+    public double getCreditLine() {
         return creditLine;
     }
 
-    public void setCreditLine(float creditLine) {
+    public void setCreditLine(double creditLine) {
         this.creditLine = creditLine;
     }
 
-    public float getBeginBalance() {
+    public double getBeginBalance() {
         return beginBalance;
     }
 
-    public void setBeginBalance(float beginBalance) {
+    public void setBeginBalance(double beginBalance) {
         this.beginBalance = beginBalance;
     }
 
@@ -69,11 +69,11 @@ public class Account {
         this.beginBalanceTimestamp = beginBalanceTimestamp;
     }
 
-    public char getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(char type) {
+    public void setType(int type) {
         this.type = type;
     }
     
