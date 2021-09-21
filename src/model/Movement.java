@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clases;
+package model;
 
 import java.time.LocalDateTime;
 
@@ -11,14 +11,13 @@ import java.time.LocalDateTime;
  *
  * @author 2dam
  */
-public class Account {
+public class Movement {
     
     private int id;
-    private String description;
+    private LocalDateTime timestamp;
+    private float amount;
     private float balance;
-    private float creditLine;
-    private float beginBalance;
-    private LocalDateTime beginBalanceTimestamp;
-    private char type;
+    private String description;
+    
     
 }
