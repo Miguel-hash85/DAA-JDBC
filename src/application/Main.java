@@ -6,7 +6,7 @@
 package application;
 
 
-import clases.DBConnection;
+import connection.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
