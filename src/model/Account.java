@@ -6,7 +6,6 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 /**
@@ -17,10 +16,10 @@ public class Account implements Serializable{
     
     private int id;
     private String description;
-    private float balance;
-    private float creditLine;
-    private float beginBalance;
-    private Date beginBalanceTimestamp;
+    private double balance;
+    private double creditLine;
+    private double beginBalance;
+    private LocalDateTime beginBalanceTimestamp;
     private int type;
 
     public Account() {
@@ -34,19 +33,19 @@ public class Account implements Serializable{
         return description;
     }
 
-    public float getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public float getCreditLine() {
+    public double getCreditLine() {
         return creditLine;
     }
 
-    public float getBeginBalance() {
+    public double getBeginBalance() {
         return beginBalance;
     }
 
-    public Date getBeginBalanceTimestamp() {
+    public LocalDateTime getBeginBalanceTimestamp() {
         return beginBalanceTimestamp;
     }
 
@@ -62,19 +61,19 @@ public class Account implements Serializable{
         this.description = description;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 
-    public void setCreditLine(float creditLine) {
+    public void setCreditLine(double creditLine) {
         this.creditLine = creditLine;
     }
 
-    public void setBeginBalance(float beginBalance) {
+    public void setBeginBalance(double beginBalance) {
         this.beginBalance = beginBalance;
     }
 
-    public void setBeginBalanceTimestamp(Date beginBalanceTimestamp) {
+    public void setBeginBalanceTimestamp(LocalDateTime beginBalanceTimestamp) {
         this.beginBalanceTimestamp = beginBalanceTimestamp;
     }
 

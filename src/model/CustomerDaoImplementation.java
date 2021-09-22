@@ -24,6 +24,7 @@ public class CustomerDaoImplementation implements CustomerDao{
     private CustomerAccount account;
     private ArrayList<CustomerAccount> accounts;
     private ArrayList<Account> accountsDetail;
+    private ArrayList<Customer> customers;
     private ResultSet rs=null;
     private Account cuenta;
     
@@ -32,6 +33,7 @@ public class CustomerDaoImplementation implements CustomerDao{
                                + " values (?,?,?,?,?,?,?,?,?,?)";
     
     final String selectCustomer="Select * from customer where id=?";
+    final String selectAllCustomers="Select id, firstName from customer";
     final String selectAccounts="Select * from customer_account where id=?";
     final String selectAccount="Select * from account where id=?";
 
@@ -56,11 +58,11 @@ public class CustomerDaoImplementation implements CustomerDao{
     }
 
     @Override
-    public Customer checkCustomer(String customerId) throws Exception {
+    public Customer checkCustomer(int customerId) throws Exception {
         customer=new Customer();
         con=conection.openConnection();
         stmt = con.prepareStatement(selectCustomer);
-        stmt.setString(1, customerId);
+        stmt.setInt(1, customerId);
         rs = stmt.executeQuery();
         if(rs.next()){
             customer.setId(rs.getInt("id"));
@@ -83,11 +85,11 @@ public class CustomerDaoImplementation implements CustomerDao{
     }
 
     @Override
-    public void checkCustomerAccounts(String customerId) throws Exception {
+    public void checkCustomerAccounts(int customerId) throws Exception {
         accounts=new ArrayList<>();
         con=conection.openConnection();
         stmt = con.prepareStatement(selectAccounts);
-        stmt.setString(1, customerId);
+        stmt.setInt(1, customerId);
         rs = stmt.executeQuery();
         while(rs.next()){
             account=new CustomerAccount();
@@ -116,7 +118,7 @@ public class CustomerDaoImplementation implements CustomerDao{
                 cuenta.setBalance(rs.getInt("balance"));
                 cuenta.setCreditLine(rs.getInt("creditLine"));
                 cuenta.setBeginBalance(rs.getInt("beginBalance"));
-                cuenta.setBeginBalanceTimestamp(rs.getDate("beginBalanceTimestamp"));
+                cuenta.setBeginBalanceTimestamp(rs.getTimestamp("beginBalanceTimestamp").toLocalDateTime());
                 cuenta.setType(rs.getInt("type"));
                 accountsDetail.add(cuenta);
             }
@@ -124,6 +126,23 @@ public class CustomerDaoImplementation implements CustomerDao{
         }
         conection.closeConnection(stmt, con);
         return accountsDetail;
+    }
+
+    @Override
+    public ArrayList<Customer> getCustomers() throws Exception {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        customers=new ArrayList<>();
+        con=conection.openConnection();
+        stmt = con.prepareStatement(selectAllCustomers);
+        while(rs.next()){
+            customer=new Customer();
+            customer.setId(rs.getInt("id"));
+            customer.setFirstName(rs.getString("firstName"));
+            customers.add(customer);
+        }
+        rs.close();
+        conection.closeConnection(stmt, con);
+        return customers;
     }
     
     
