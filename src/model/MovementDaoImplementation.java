@@ -20,7 +20,11 @@ public class MovementDaoImplementation implements MovementDao {
     private Connection con;
     private PreparedStatement stmt;
     private DBConnection connection = new DBConnection();
-
+/**
+ * 
+ * @param movement
+ * @throws Exception 
+ */
     @Override
     public void addMovement(Movement movement) throws Exception {
         String asignID = "SELECT id FROM bankDB.movement ORDER BY id DESC LIMIT 1";
