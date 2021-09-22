@@ -5,14 +5,15 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author 2dam
  */
-public class Account {
-    
+public class Account implements Serializable {
+
     private int id;
     private String description;
     private double balance;
@@ -21,12 +22,11 @@ public class Account {
     private LocalDateTime beginBalanceTimestamp;
     private int type;
 
-    public int getId() {
-        return id;
+    public Account() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public String getDescription() {
@@ -73,9 +73,12 @@ public class Account {
         return type;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setType(int type) {
         this.type = type;
     }
-    
     
 }
