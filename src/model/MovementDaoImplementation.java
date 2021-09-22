@@ -45,7 +45,7 @@ public class MovementDaoImplementation implements MovementDao {
             stmt.setDouble(3, movement.getBalance());
             stmt.setString(4, movement.getDescription());
             stmt.setTimestamp(4, Timestamp.valueOf(movement.getTimestamp()));
-            stmt.setInt(6, movement.getAccountID());
+            stmt.setLong(6, movement.getAccountID());
             stmt.executeUpdate();
             connection.closeConnection(stmt, con);
             resultSet.close();
@@ -70,7 +70,7 @@ public class MovementDaoImplementation implements MovementDao {
                 movement.setBalance((float) resultSet.getDouble(3));
                 movement.setDescription(resultSet.getString(4));
                 movement.setTimestamp(resultSet.getTimestamp(5).toLocalDateTime());
-                movement.setAccountID(resultSet.getInt(6));
+                movement.setAccountID(resultSet.getLong(6));
                 movements.add(movement);
             }
        

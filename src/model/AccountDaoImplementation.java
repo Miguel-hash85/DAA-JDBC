@@ -31,7 +31,7 @@ public class AccountDaoImplementation implements AccountDao {
         con = connection.openConnection();
         try {
             stmt = con.prepareStatement("insert into bankdb.account values(?,?,?,?,?,?,?)");
-            stmt.setInt(1, account.getId());
+            stmt.setLong(1, account.getId());
             stmt.setDouble(2, account.getBalance());
             stmt.setDouble(3, account.getBeginBalance());
             stmt.setTimestamp(4, Timestamp.valueOf(account.getBeginBalanceTimestamp()));

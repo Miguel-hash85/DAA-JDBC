@@ -11,13 +11,13 @@ package model;
  */
 public class CustomerAccount {
     
-    private int idCustomer;
-    private int idAccount;
+    private Long idCustomer;
+    private Long idAccount;
 
     public CustomerAccount() {
     }
 
-    public CustomerAccount(int idCustomer, int idAccount) {
+    public CustomerAccount(long idCustomer, long idAccount) {
         this.idCustomer = idCustomer;
         this.idAccount = idAccount;
     }
@@ -25,28 +25,28 @@ public class CustomerAccount {
     /**
      * @return the idCustomer
      */
-    public int getIdCustomer() {
+    public long getIdCustomer() {
         return idCustomer;
     }
 
     /**
      * @param idCustomer the idCustomer to set
      */
-    public void setIdCustomer(int idCustomer) {
+    public void setIdCustomer(long idCustomer) {
         this.idCustomer = idCustomer;
     }
 
     /**
      * @return the idAccount
      */
-    public int getIdAccount() {
+    public long getIdAccount() {
         return idAccount;
     }
 
     /**
      * @param idAccount the idAccount to set
      */
-    public void setIdAccount(int idAccount) {
+    public void setIdAccount(long idAccount) {
         this.idAccount = idAccount;
     }
     

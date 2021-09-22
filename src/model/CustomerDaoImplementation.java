@@ -41,7 +41,7 @@ public class CustomerDaoImplementation implements CustomerDao{
     public void createCustomer(Customer customer) throws Exception {
         con=conection.openConnection();
         stmt = con.prepareStatement(createCustomer);
-        stmt.setInt(1, customer.getId());
+        stmt.setLong(1, customer.getId());
         stmt.setString(2, customer.getCity());
         stmt.setString(3, customer.getEmail());
         stmt.setString(4, customer.getFirstName());
@@ -109,7 +109,7 @@ public class CustomerDaoImplementation implements CustomerDao{
         con=conection.openConnection();
         for(int i=0;i<accounts.size();i++){
             stmt = con.prepareStatement(selectAccounts);
-            stmt.setInt(1, accounts.get(i).getIdAccount());
+            stmt.setLong(1, accounts.get(i).getIdAccount());
             rs = stmt.executeQuery();
             if(rs.next()){
                 cuenta=new Account();

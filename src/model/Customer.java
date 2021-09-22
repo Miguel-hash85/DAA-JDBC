@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Customer implements Serializable{
  
     
-    private int id;
+    private long id;
     private String firstName;
     private String lastName;
     private String middleInitial;
@@ -28,7 +28,7 @@ public class Customer implements Serializable{
      public Customer() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -68,7 +68,7 @@ public class Customer implements Serializable{
         return email;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
