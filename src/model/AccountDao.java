@@ -15,5 +15,6 @@ public interface AccountDao {
     public void addCustomerToAccount(int idClient,int idAccount) throws Exception;
     public void createAccount(Account account) throws Exception;
     public Account consultAccountDetails(int idAccount) throws Exception;
-    public void listAccountsId() throws Exception;
+    public Set listAccountsId() throws Exception;
+    public boolean searchAccountId(int accountId) throws Exception;
 }

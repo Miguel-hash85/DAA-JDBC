@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,7 +45,12 @@ public class AccountDaoImplementation implements AccountDao {
             connection.closeConnection(stmt, con);
         }
     }
-
+    /**
+     * 
+     * @param idAccount
+     * @return
+     * @throws Exception 
+     */
     @Override
     public Account consultAccountDetails(int idAccount) throws Exception {
         ResultSet rs;
@@ -66,7 +73,12 @@ public class AccountDaoImplementation implements AccountDao {
         connection.closeConnection(stmt, con);
         return account;
     }
-
+    /**
+     * 
+     * @param idClient
+     * @param idAccount
+     * @throws Exception 
+     */
     @Override
     public void addCustomerToAccount(int idClient, int idAccount) throws Exception {
          con=connection.openConnection();
@@ -76,19 +88,45 @@ public class AccountDaoImplementation implements AccountDao {
          stmt.executeUpdate();
          connection.closeConnection(stmt, con);
     }
-
+    /**
+     * 
+     * @return
+     * @throws Exception 
+     */
     @Override
-    public void listAccountsId() throws Exception {
-        ResultSet rs;
+    public Set listAccountsId() throws Exception {
+        ResultSet rs; 
+        Set<Integer>accountsId=new HashSet<>();
         con = connection.openConnection();
         stmt = con.prepareStatement("select id from bankdb.account");
         rs = stmt.executeQuery();
-        System.out.println("The id's of the registered accounts are:");
         while (rs.next()) {
-            System.out.println("Account id: "+rs.getString(1));
+            accountsId.add(rs.getInt(1));
         }
         rs.close();
         connection.closeConnection(stmt, con);
+        return accountsId;
+    }
+    /**
+     * 
+     * @param accountId
+     * @return
+     * @throws Exception 
+     */
+    @Override
+    public boolean searchAccountId(int accountId) throws Exception {
+        ResultSet rs;
+        boolean is=false;
+        con = connection.openConnection();
+        stmt = con.prepareStatement("select id from bankdb.account");
+        rs = stmt.executeQuery();
+        while (rs.next()) {
+            if(rs.getInt(1)==accountId)
+                is=true;
+        }
+        rs.close();
+        connection.closeConnection(stmt, con);
+        return is;
     }
 
 }
