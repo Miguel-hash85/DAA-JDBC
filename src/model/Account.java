@@ -12,8 +12,11 @@ import java.time.LocalDateTime;
  *
  * @author 2dam
  */
-public class Account implements Serializable{
+
+
     
+public class Account implements Serializable {
+
     private int id;
     private String description;
     private double balance;
@@ -33,20 +36,49 @@ public class Account implements Serializable{
         return description;
     }
 
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
     public double getBalance() {
         return balance;
     }
+
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
 
     public double getCreditLine() {
         return creditLine;
     }
 
+
+    public void setCreditLine(double creditLine) {
+        this.creditLine = creditLine;
+    }
+
+
     public double getBeginBalance() {
         return beginBalance;
     }
 
+
+    public void setBeginBalance(double beginBalance) {
+        this.beginBalance = beginBalance;
+    }
+
+
     public LocalDateTime getBeginBalanceTimestamp() {
         return beginBalanceTimestamp;
+    }
+
+
+    public void setBeginBalanceTimestamp(LocalDateTime beginBalanceTimestamp) {
+        this.beginBalanceTimestamp = beginBalanceTimestamp;
     }
 
     public int getType() {
@@ -57,30 +89,9 @@ public class Account implements Serializable{
         this.id = id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public void setCreditLine(double creditLine) {
-        this.creditLine = creditLine;
-    }
-
-    public void setBeginBalance(double beginBalance) {
-        this.beginBalance = beginBalance;
-    }
-
-    public void setBeginBalanceTimestamp(LocalDateTime beginBalanceTimestamp) {
-        this.beginBalanceTimestamp = beginBalanceTimestamp;
-    }
-
     public void setType(int type) {
         this.type = type;
     }
     
-    
-    
+
 }

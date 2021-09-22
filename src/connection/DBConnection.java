@@ -1,3 +1,10 @@
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package connection;
 
 import java.sql.Connection;
@@ -8,6 +15,7 @@ import java.util.ResourceBundle;
 
 
 
+
 public class DBConnection {
 	private ResourceBundle configFile;
 	private  String url;
@@ -15,7 +23,7 @@ public class DBConnection {
 	private  String pass;
 
 	public DBConnection() {
-		configFile = ResourceBundle.getBundle("clases.config");
+		configFile = ResourceBundle.getBundle("model.config");
 		url = configFile.getString("URL");
 		user = configFile.getString("USER");
 		pass = configFile.getString("PASSWORD");
@@ -41,3 +49,6 @@ public class DBConnection {
 		}
 	}
 }
+
+
+
