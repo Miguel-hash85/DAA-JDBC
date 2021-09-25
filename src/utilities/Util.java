@@ -311,6 +311,22 @@ public class Util{
 		} while (!ok);
 		return fNumero;
 	}
+        
+        public static double leerDouble(String message) {
+		double fNumero = 0;
+                System.out.println(message);
+		boolean ok;
+		do {
+			try {
+				ok = true;
+				fNumero = Double.parseDouble(introducirCadena());
+			} catch (NumberFormatException e) {
+				System.out.println("Error al introducir el numero");
+				ok = false;
+			}
+		} while (!ok);
+		return fNumero;
+	}
 	
 	public static boolean esBoolean(){
 		String respu;

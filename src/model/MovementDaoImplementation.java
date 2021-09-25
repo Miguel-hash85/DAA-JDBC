@@ -34,7 +34,7 @@ public class MovementDaoImplementation implements MovementDao {
         int movementID = 0;
        
             con = connection.openConnection();
-            stmt = con.prepareStatement("SELECT id FROM movement where balance =200");
+            stmt = con.prepareStatement(asignID);
             resultSet = stmt.executeQuery();
             if (resultSet.next()) {
                 movementID = resultSet.getInt("id");
@@ -54,14 +54,15 @@ public class MovementDaoImplementation implements MovementDao {
     }
 
     @Override
-    public ArrayList<Movement> listMovements() throws Exception {
+    public ArrayList<Movement> listMovements(int idAccount) throws Exception {
         String searchMovements="Select * from movements where account_id=?";
         ResultSet resultSet ;
         Movement movement;
 
-        ArrayList<Movement> movements = new ArrayList<Movement>();
+        ArrayList<Movement> movements = new ArrayList<>();
         con = connection.openConnection();
             stmt=con.prepareStatement(searchMovements);
+            stmt.setInt(1, idAccount);
             resultSet=stmt.executeQuery();
             while(resultSet.next()){
                 movement=new Movement();

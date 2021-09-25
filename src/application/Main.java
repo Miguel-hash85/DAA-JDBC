@@ -6,12 +6,8 @@
 package application;
 
 
-import connection.DBConnection;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import view.Menu;
 
 /**
  *
@@ -24,7 +20,8 @@ public class Main{
      */
     public static void main(String[] args) {
         
-        
+        Menu menu=new Menu();
+        menu.ejecutarOpcion();
         
     }
     

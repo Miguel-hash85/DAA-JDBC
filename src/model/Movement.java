@@ -16,8 +16,8 @@ public class Movement implements Serializable{
     
     private int id;
     private LocalDateTime timestamp;
-    private float amount;
-    private float balance;
+    private double amount;
+    private double balance;
     private String description;
     private int accountID;
 
@@ -34,11 +34,11 @@ public class Movement implements Serializable{
         return timestamp;
     }
 
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public float getBalance() {
+    public double getBalance() {
         return balance;
     }
 
@@ -57,11 +57,11 @@ public class Movement implements Serializable{
         this.timestamp = timestamp;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 
