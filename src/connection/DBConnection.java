@@ -23,7 +23,7 @@ public class DBConnection {
 	private  String pass;
 
 	public DBConnection() {
-		configFile = ResourceBundle.getBundle("model.config");
+		configFile = ResourceBundle.getBundle("connection.config");
 		url = configFile.getString("URL");
 		user = configFile.getString("USER");
 		pass = configFile.getString("PASSWORD");
@@ -31,13 +31,9 @@ public class DBConnection {
 	}
 
 	public Connection openConnection() throws SQLException {
-		Connection con = null;
-		try {
-			con = DriverManager.getConnection(url, user, pass);
-		} catch (SQLException e) {
-                   
-		}
-		return con;
+            Connection con;
+            con = DriverManager.getConnection(url, user, pass);
+            return con;
 	}
 
 	public void closeConnection(PreparedStatement stmt, Connection con) throws SQLException {

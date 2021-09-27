@@ -31,25 +31,28 @@ public class Menu {
     private CustomerDao customerDao=new CustomerDaoImplementation();
     private MovementDao movementDao= new MovementDaoImplementation();
 
-    public int mostrarMenu() {
-        int opcion = Util.leerInt("Introduce una opcion: "
-                + "1. Create customer."
-                + "2. Consult customer."
-                + "3. Consult accounts of a client."
-                + "4. Create customer acount."
-                + "5. Add customer to account."
-                + "6. Consult details of an account."
-                + "7. Make movement on an account."
-                + "8. Consult movement of an account."
-                + "9. Salir", 1, 9);
-        return opcion;
+    public void mostrarMenu() {
+         System.out.println(
+                  "1. Create customer.\n"
+                + "2. Consult customer.\n"
+                + "3. Consult accounts of a client.\n"
+                + "4. Create customer acount.\n"
+                + "5. Add customer to account.\n"
+                + "6. Consult details of an account.\n"
+                + "7. Make movement on an account.\n"
+                + "8. Consult movement of an account.\n"
+                + "9. Salir\n");
+         
+        
     }
 
     public void ejecutarOpcion() {
-        
+        int opcion=0;
         boolean salir=false;
-        int opcion = mostrarMenu();
+        
         do{
+            mostrarMenu();
+            opcion=Util.leerInt("Introduce la opcion.");
             switch (opcion) {
             case 1:
                 createCustomer();
@@ -82,7 +85,9 @@ public class Menu {
             default:
                 break;
         }
-        }while(!salir);
+          }while(!salir);
+            
+        
         
     }
     
@@ -109,10 +114,12 @@ public class Menu {
 
     public void findCustomer() {
         
+        
         mostrarClientes();
         int idBuscar=Util.leerInt("Introduce el id para buscar el customer.");
         try {
-            customerDao.checkCustomer(idBuscar);
+            Customer customer=customerDao.checkCustomer(idBuscar);
+            System.out.println(customer.toString());
             
             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         } catch (Exception ex) {
@@ -124,7 +131,7 @@ public class Menu {
     private void consultAccounts() {
         
         mostrarClientes();
-        int idBuscar=Util.leerInt("Introduce el id para buscar el customer.");
+        long idBuscar=Util.leerLong("Introduce el id para buscar el customer.");
         try {
             customerDao.checkCustomerAccounts(idBuscar);
             
@@ -233,7 +240,7 @@ public class Menu {
             for(int i=0;i<customers.size();i++){
                 System.out.println("****Cliente numero "+(i+1)+"****");
                 System.out.println("Nombre: "+customers.get(i).getFirstName()
-                                    +"Id: "+customers.get(i).getId());
+                                    +"\tId: "+customers.get(i).getId());
             }
             
         } catch (Exception ex) {

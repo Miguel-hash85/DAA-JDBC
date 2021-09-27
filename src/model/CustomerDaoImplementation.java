@@ -28,20 +28,18 @@ public class CustomerDaoImplementation implements CustomerDao{
     private ResultSet rs=null;
     private Account cuenta;
     
-    final String createCustomer="Insert into customer "
-                               + "(id, city, email, firstName, lastName, middleInitial, phone, state, street, zip)"
-                               + " values (?,?,?,?,?,?,?,?,?,?)";
+    final String createCustomer="Insert into customer values(?,?,?,?,?,?,?,?,?,?)";
     
     final String selectCustomer="Select * from customer where id=?";
     final String selectAllCustomers="Select id, firstName from customer";
-    final String selectAccounts="Select * from customer_account where id=?";
+    final String selectAccounts="Select * from customer_account where customers_id=?";
     final String selectAccount="Select * from account where id=?";
 
     @Override
     public void createCustomer(Customer customer) throws Exception {
         con=conection.openConnection();
         stmt = con.prepareStatement(createCustomer);
-        stmt.setInt(1, customer.getId());
+        stmt.setLong(1, customer.getId());
         stmt.setString(2, customer.getCity());
         stmt.setString(3, customer.getEmail());
         stmt.setString(4, customer.getFirstName());
@@ -58,11 +56,11 @@ public class CustomerDaoImplementation implements CustomerDao{
     }
 
     @Override
-    public Customer checkCustomer(int customerId) throws Exception {
+    public Customer checkCustomer(long customerId) throws Exception {
         customer=new Customer();
         con=conection.openConnection();
         stmt = con.prepareStatement(selectCustomer);
-        stmt.setInt(1, customerId);
+        stmt.setLong(1, customerId);
         rs = stmt.executeQuery();
         if(rs.next()){
             customer.setId(rs.getInt("id"));
@@ -85,11 +83,11 @@ public class CustomerDaoImplementation implements CustomerDao{
     }
 
     @Override
-    public void checkCustomerAccounts(int customerId) throws Exception {
+    public ArrayList<CustomerAccount> checkCustomerAccounts(long customerId) throws Exception {
         accounts=new ArrayList<>();
         con=conection.openConnection();
         stmt = con.prepareStatement(selectAccounts);
-        stmt.setInt(1, customerId);
+        stmt.setLong(1,customerId);
         rs = stmt.executeQuery();
         while(rs.next()){
             account=new CustomerAccount();
@@ -99,17 +97,18 @@ public class CustomerDaoImplementation implements CustomerDao{
         }
         rs.close();
         conection.closeConnection(stmt, con);
-        getAccounts(accounts);
+        return accounts;
+        
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    @Override
+    /*@Override
     public ArrayList<Account> getAccounts(ArrayList<CustomerAccount> accounts)throws Exception{
         accountsDetail=new ArrayList<>();
         con=conection.openConnection();
         for(int i=0;i<accounts.size();i++){
             stmt = con.prepareStatement(selectAccounts);
-            stmt.setInt(1, accounts.get(i).getIdAccount());
+            stmt.setLong(1, accounts.get(i).getIdAccount());
             rs = stmt.executeQuery();
             if(rs.next()){
                 cuenta=new Account();
@@ -126,7 +125,7 @@ public class CustomerDaoImplementation implements CustomerDao{
         }
         conection.closeConnection(stmt, con);
         return accountsDetail;
-    }
+    }*/
 
     @Override
     public ArrayList<Customer> getCustomers() throws Exception {
@@ -134,6 +133,7 @@ public class CustomerDaoImplementation implements CustomerDao{
         customers=new ArrayList<>();
         con=conection.openConnection();
         stmt = con.prepareStatement(selectAllCustomers);
+        rs=stmt.executeQuery();
         while(rs.next()){
             customer=new Customer();
             customer.setId(rs.getInt("id"));

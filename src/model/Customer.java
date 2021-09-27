@@ -48,6 +48,11 @@ public class Customer implements Serializable{
         return street;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", middleInitial=" + middleInitial + ", street=" + street + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phone=" + phone + ", email=" + email + '}';
+    }
+
     public String getCity() {
         return city;
     }
