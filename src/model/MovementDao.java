@@ -21,5 +21,5 @@ public interface MovementDao {
      * @throws Exception
      */
     public void addMovement(Movement movement) throws Exception;
-    public ArrayList<Movement> listMovements() throws Exception;
+    public ArrayList<Movement> listMovements(long idAccount) throws Exception;
 }

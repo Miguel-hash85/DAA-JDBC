@@ -156,6 +156,23 @@ public class Util{
 		}while(error);
 		return num;
 	}
+        
+        public static long leerLong(String mensaje) {
+        long num=0;
+		boolean error;
+		System.out.println(mensaje);
+		do{
+			error=false;
+			try{
+				num=Long.parseLong(introducirCadena());
+			}
+			catch(NumberFormatException e){
+				System.out.println("Error, el dato no es numérico. Introduce de nuevo: ");
+				error=true;
+			}
+		}while(error);
+		return num;
+    }
 
 	public static int leerInt(String mensaje){
 		int num=0;
@@ -299,6 +316,22 @@ public class Util{
 
 	public static double leerDouble() {
 		double fNumero = 0;
+		boolean ok;
+		do {
+			try {
+				ok = true;
+				fNumero = Double.parseDouble(introducirCadena());
+			} catch (NumberFormatException e) {
+				System.out.println("Error al introducir el numero");
+				ok = false;
+			}
+		} while (!ok);
+		return fNumero;
+	}
+        
+        public static double leerDouble(String message) {
+		double fNumero = 0;
+                System.out.println(message);
 		boolean ok;
 		do {
 			try {
@@ -459,4 +492,6 @@ public class Util{
 	 	}
 	 	return cont;
 	 }
+
+    
 }

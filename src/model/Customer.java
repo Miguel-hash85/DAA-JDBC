@@ -22,7 +22,7 @@ public class Customer implements Serializable{
     private String city;
     private String state;
     private int zip;
-    private int phone;
+    private long phone;
     private String email;
     
      public Customer() {
@@ -48,6 +48,11 @@ public class Customer implements Serializable{
         return street;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", middleInitial=" + middleInitial + ", street=" + street + ", city=" + city + ", state=" + state + ", zip=" + zip + ", phone=" + phone + ", email=" + email + '}';
+    }
+
     public String getCity() {
         return city;
     }
@@ -60,7 +65,7 @@ public class Customer implements Serializable{
         return zip;
     }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 
@@ -100,7 +105,7 @@ public class Customer implements Serializable{
         this.zip = zip;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

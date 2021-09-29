@@ -11,8 +11,13 @@ package model;
  */
 public class CustomerAccount {
     
+<<<<<<< HEAD
     private Long idCustomer;
     private Long idAccount;
+=======
+    private long idCustomer;
+    private long idAccount;
+>>>>>>> 2cd54c186c930960a878c2bf695874f91efbed5f
 
     public CustomerAccount() {
     }
@@ -41,6 +46,11 @@ public class CustomerAccount {
      */
     public long getIdAccount() {
         return idAccount;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerAccount{" + "idCustomer=" + idCustomer + ", idAccount=" + idAccount + '}';
     }
 
     /**

@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public interface CustomerDao {
     
     public void createCustomer (Customer customer) throws Exception;
-    public Customer checkCustomer (int customerId)throws Exception;
-    public void checkCustomerAccounts (int customerId)throws Exception;
-    public ArrayList<Account> getAccounts(ArrayList<CustomerAccount> account)throws Exception;
+    public Customer checkCustomer (long customerId)throws Exception;
+    public ArrayList<CustomerAccount> checkCustomerAccounts (long customerId)throws Exception;
+    /*public ArrayList<Account> getAccounts(ArrayList<CustomerAccount> account)throws Exception;*/
     public ArrayList<Customer> getCustomers() throws Exception;
     
 }

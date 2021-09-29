@@ -12,9 +12,9 @@ import java.util.Set;
  * @author 2dam
  */
 public interface AccountDao {
-    public void addCustomerToAccount(int idClient,int idAccount) throws Exception;
+    public void addCustomerToAccount(long idClient,long idAccount) throws Exception;
     public void createAccount(Account account) throws Exception;
-    public Account consultAccountDetails(int idAccount) throws Exception;
+    public Account consultAccountDetails(long idAccount) throws Exception;
     public Set listAccountsId() throws Exception;
-    public boolean searchAccountId(int accountId) throws Exception;
+    public boolean searchAccountId(long accountId) throws Exception;
 }
