@@ -19,7 +19,7 @@ public class Movement implements Serializable{
     private double amount;
     private double balance;
     private String description;
-    private int accountID;
+    private long accountID;
 
     public Movement() {
     }
@@ -27,7 +27,7 @@ public class Movement implements Serializable{
     public int getId() {
         return id;
     }
-    public int getAccountID(){
+    public long getAccountID(){
         return accountID;
     }
     public LocalDateTime getTimestamp() {
@@ -50,7 +50,7 @@ public class Movement implements Serializable{
         this.id = id;
     }
 
-    public void setAccountID(int accountID){
+    public void setAccountID(long accountID){
         this.accountID=accountID;
     }
     public void setTimestamp(LocalDateTime timestamp) {

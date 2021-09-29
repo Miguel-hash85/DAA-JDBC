@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Customer implements Serializable{
  
     
-    private int id;
+    private long id;
     private String firstName;
     private String lastName;
     private String middleInitial;
@@ -22,13 +22,13 @@ public class Customer implements Serializable{
     private String city;
     private String state;
     private int zip;
-    private int phone;
+    private long phone;
     private String email;
     
      public Customer() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -65,7 +65,7 @@ public class Customer implements Serializable{
         return zip;
     }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 
@@ -73,7 +73,7 @@ public class Customer implements Serializable{
         return email;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -105,7 +105,7 @@ public class Customer implements Serializable{
         this.zip = zip;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

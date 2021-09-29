@@ -13,6 +13,7 @@ import model.Account;
 import model.AccountDao;
 import model.AccountDaoImplementation;
 import model.Customer;
+import model.CustomerAccount;
 import model.CustomerDao;
 import model.CustomerDaoImplementation;
 import model.Movement;
@@ -94,7 +95,7 @@ public class Menu {
     public void createCustomer(){
         
         Customer customer=new Customer();
-        customer.setId(Util.leerInt("Introduce id"));
+        customer.setId(Util.leerLong("Introduce id"));
         customer.setFirstName(Util.introducirCadena("Introduce el nombre"));
         customer.setLastName(Util.introducirCadena("Introduce el apellido"));
         customer.setMiddleInitial(Util.introducirCadena("Introduce iniciales"));
@@ -116,7 +117,7 @@ public class Menu {
         
         
         mostrarClientes();
-        int idBuscar=Util.leerInt("Introduce el id para buscar el customer.");
+        long idBuscar=Util.leerLong("Introduce el id para buscar el customer.");
         try {
             Customer customer=customerDao.checkCustomer(idBuscar);
             System.out.println(customer.toString());
@@ -130,10 +131,16 @@ public class Menu {
     
     private void consultAccounts() {
         
+        ArrayList<CustomerAccount> accounts;
         mostrarClientes();
         long idBuscar=Util.leerLong("Introduce el id para buscar el customer.");
         try {
-            customerDao.checkCustomerAccounts(idBuscar);
+            accounts=customerDao.checkCustomerAccounts(idBuscar);
+            for(CustomerAccount ca: accounts){
+                
+                System.out.println(ca.toString());
+                
+            }
             
             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         } catch (Exception ex) {
@@ -146,7 +153,7 @@ public class Menu {
     private void createCustomerAccount() {
         
         Account account=new Account();
-        account.setId(Util.leerInt("Introduce el id"));
+        account.setId(Util.leerLong("Introduce el id"));
         account.setBalance(Util.leerDouble("Introduce el saldo"));
         account.setBeginBalance(Util.leerDouble("Introduce el saldo de inicio"));
         account.setBeginBalanceTimestamp(Util.leerFechaHora("Introduce la fecha del primer saldo"));
@@ -164,9 +171,9 @@ public class Menu {
     
     private void addCustomerToAccount() {
         mostrarCuentas();
-        int accountId=Util.leerInt("Introduce el id de la cuenta para añadirla al cliente");
+        long accountId=Util.leerLong("Introduce el id de la cuenta para añadirla al cliente");
         mostrarClientes();
-        int customerId=Util.leerInt("Introduce el id del cliente para añadirle la cuenta");
+        long customerId=Util.leerLong("Introduce el id del cliente para añadirle la cuenta");
         try {
             accountDao.addCustomerToAccount(customerId,accountId);
         } catch (Exception ex) {
@@ -179,7 +186,7 @@ public class Menu {
         
         
         mostrarCuentas();
-        int accountId=Util.leerInt("Introduce el id de la cuenta para añadirla al cliente");
+        long accountId=Util.leerLong("Introduce el id de la cuenta para añadirla al cliente");
         try {
             Account cuenta=accountDao.consultAccountDetails(accountId);
             System.out.println("Id: "+cuenta.getId()
@@ -201,7 +208,7 @@ public class Menu {
         
         mostrarCuentas();
         Movement movement=new Movement();
-        movement.setAccountID(Util.leerInt("Introduce el id de la cuenta para hacer el movimiento"));
+        movement.setAccountID(Util.leerLong("Introduce el id de la cuenta para hacer el movimiento"));
         movement.setAmount(Util.leerDouble("Introduce la cantidad"));
         movement.setBalance(Util.leerDouble("introduce el saldo"));
         movement.setDescription(Util.introducirCadena("Introduce la descripcion"));
@@ -219,7 +226,7 @@ public class Menu {
         ArrayList<Movement> movimientos=new ArrayList<>();
         mostrarCuentas();
         try {
-            movimientos=movementDao.listMovements(Util.leerInt("Introduce el id de la cuenta para mostrar los movimientos."));
+            movimientos=movementDao.listMovements(Util.leerLong("Introduce el id de la cuenta para mostrar los movimientos."));
             for(Movement m : movimientos){
                 System.out.println("Id: "+ m.getId());
                 System.out.println("Cantidad: "+ m.getAmount());
@@ -251,8 +258,8 @@ public class Menu {
     public void mostrarCuentas(){
         int numero=0;
         try {
-            Set<Integer> accounts=accountDao.listAccountsId();
-            for(Integer i : accounts){
+            Set<Long> accounts=accountDao.listAccountsId();
+            for(Long i : accounts){
                 
                 System.out.println("****Cuenta numero "+(numero+1)+"****");
                 System.out.println("Id: "+i);

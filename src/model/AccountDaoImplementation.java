@@ -31,7 +31,7 @@ public class AccountDaoImplementation implements AccountDao {
         con = connection.openConnection();
         try {
             stmt = con.prepareStatement("insert into bankdb.account values(?,?,?,?,?,?,?)");
-            stmt.setInt(1, account.getId());
+            stmt.setLong(1, account.getId());
             stmt.setDouble(2, account.getBalance());
             stmt.setDouble(3, account.getBeginBalance());
             stmt.setTimestamp(4, Timestamp.valueOf(account.getBeginBalanceTimestamp()));
@@ -52,12 +52,12 @@ public class AccountDaoImplementation implements AccountDao {
      * @throws Exception 
      */
     @Override
-    public Account consultAccountDetails(int idAccount) throws Exception {
+    public Account consultAccountDetails(long idAccount) throws Exception {
         ResultSet rs;
         Account account = null;
         con = connection.openConnection();
         stmt = con.prepareStatement("select * from bankdb.account where id=?");
-        stmt.setInt(1, idAccount);
+        stmt.setLong(1, idAccount);
         rs = stmt.executeQuery();
         if (rs.next()) {
             account = new Account();
@@ -80,11 +80,11 @@ public class AccountDaoImplementation implements AccountDao {
      * @throws Exception 
      */
     @Override
-    public void addCustomerToAccount(int idClient, int idAccount) throws Exception {
+    public void addCustomerToAccount(long idClient, long idAccount) throws Exception {
          con=connection.openConnection();
          stmt=con.prepareStatement("insert into bankdb.customer_account values(?,?)");
-         stmt.setInt(1,idClient);
-         stmt.setInt(2,idAccount);
+         stmt.setLong(1,idClient);
+         stmt.setLong(2,idAccount);
          stmt.executeUpdate();
          connection.closeConnection(stmt, con);
     }
@@ -96,12 +96,12 @@ public class AccountDaoImplementation implements AccountDao {
     @Override
     public Set listAccountsId() throws Exception {
         ResultSet rs; 
-        Set<Integer>accountsId=new HashSet<>();
+        Set<Long>accountsId=new HashSet<>();
         con = connection.openConnection();
         stmt = con.prepareStatement("select id from bankdb.account");
         rs = stmt.executeQuery();
         while (rs.next()) {
-            accountsId.add(rs.getInt(1));
+            accountsId.add(rs.getLong(1));
         }
         rs.close();
         connection.closeConnection(stmt, con);
@@ -114,14 +114,14 @@ public class AccountDaoImplementation implements AccountDao {
      * @throws Exception 
      */
     @Override
-    public boolean searchAccountId(int accountId) throws Exception {
+    public boolean searchAccountId(long accountId) throws Exception {
         ResultSet rs;
         boolean is=false;
         con = connection.openConnection();
         stmt = con.prepareStatement("select id from bankdb.account");
         rs = stmt.executeQuery();
         while (rs.next()) {
-            if(rs.getInt(1)==accountId)
+            if(rs.getLong(1)==accountId)
                 is=true;
         }
         rs.close();

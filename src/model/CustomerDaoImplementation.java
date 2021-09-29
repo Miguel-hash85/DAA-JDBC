@@ -45,7 +45,7 @@ public class CustomerDaoImplementation implements CustomerDao{
         stmt.setString(4, customer.getFirstName());
         stmt.setString(5, customer.getLastName());
         stmt.setString(6, customer.getMiddleInitial());
-        stmt.setInt(7, customer.getPhone());
+        stmt.setLong(7, customer.getPhone());
         stmt.setString(8, customer.getState());
         stmt.setString(9, customer.getStreet());
         stmt.setInt(10, customer.getZip());
@@ -63,13 +63,13 @@ public class CustomerDaoImplementation implements CustomerDao{
         stmt.setLong(1, customerId);
         rs = stmt.executeQuery();
         if(rs.next()){
-            customer.setId(rs.getInt("id"));
+            customer.setId(rs.getLong("id"));
             customer.setCity(rs.getString("city"));
             customer.setEmail(rs.getString("email"));
             customer.setFirstName(rs.getString("firstName"));
             customer.setLastName(rs.getString("lastName"));
             customer.setMiddleInitial(rs.getString("middleInitial"));
-            customer.setPhone(rs.getInt("phone"));
+            customer.setPhone(rs.getLong("phone"));
             customer.setState(rs.getString("state"));
             customer.setStreet(rs.getString("street"));
             customer.setZip(rs.getInt("zip"));
@@ -82,25 +82,7 @@ public class CustomerDaoImplementation implements CustomerDao{
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public ArrayList<CustomerAccount> checkCustomerAccounts(long customerId) throws Exception {
-        accounts=new ArrayList<>();
-        con=conection.openConnection();
-        stmt = con.prepareStatement(selectAccounts);
-        stmt.setLong(1,customerId);
-        rs = stmt.executeQuery();
-        while(rs.next()){
-            account=new CustomerAccount();
-            account.setIdCustomer(rs.getInt("customers_id"));
-            account.setIdAccount(rs.getInt("accounts_id"));
-            accounts.add(account);
-        }
-        rs.close();
-        conection.closeConnection(stmt, con);
-        return accounts;
-        
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
     /*@Override
     public ArrayList<Account> getAccounts(ArrayList<CustomerAccount> accounts)throws Exception{
@@ -136,13 +118,33 @@ public class CustomerDaoImplementation implements CustomerDao{
         rs=stmt.executeQuery();
         while(rs.next()){
             customer=new Customer();
-            customer.setId(rs.getInt("id"));
+            customer.setId(rs.getLong("id"));
             customer.setFirstName(rs.getString("firstName"));
             customers.add(customer);
         }
         rs.close();
         conection.closeConnection(stmt, con);
         return customers;
+    }
+
+    @Override
+    public ArrayList<CustomerAccount> checkCustomerAccounts(long customerId) throws Exception {
+        
+        accounts=new ArrayList<>();
+        con=conection.openConnection();
+        stmt = con.prepareStatement(selectAccounts);
+        stmt.setLong(1,customerId);
+        rs = stmt.executeQuery();
+        while(rs.next()){
+            account=new CustomerAccount();
+            account.setIdCustomer(rs.getLong("customers_id"));
+            account.setIdAccount(rs.getLong("accounts_id"));
+            accounts.add(account);
+        }
+        rs.close();
+        conection.closeConnection(stmt, con);
+        return accounts;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

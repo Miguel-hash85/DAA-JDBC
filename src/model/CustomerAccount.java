@@ -43,6 +43,11 @@ public class CustomerAccount {
         return idAccount;
     }
 
+    @Override
+    public String toString() {
+        return "CustomerAccount{" + "idCustomer=" + idCustomer + ", idAccount=" + idAccount + '}';
+    }
+
     /**
      * @param idAccount the idAccount to set
      */

@@ -29,7 +29,7 @@ public class MovementDaoImplementation implements MovementDao {
     @Override
     public void addMovement(Movement movement) throws Exception {
         String asignID = "SELECT id FROM bankDB.movement ORDER BY id DESC LIMIT 1";
-        String insertMovement = "Insert into movement (id, ammount, balance, description, timestamp,account_id) values (?,?,?,?,?,?) ";
+        String insertMovement = "Insert into movement (id, amount, balance, description, timestamp,account_id) values (?,?,?,?,?,?) ";
         ResultSet resultSet ;
         int movementID = 0;
        
@@ -44,8 +44,8 @@ public class MovementDaoImplementation implements MovementDao {
             stmt.setDouble(2, movement.getAmount());
             stmt.setDouble(3, movement.getBalance());
             stmt.setString(4, movement.getDescription());
-            stmt.setTimestamp(4, Timestamp.valueOf(movement.getTimestamp()));
-            stmt.setInt(6, movement.getAccountID());
+            stmt.setTimestamp(5, Timestamp.valueOf(movement.getTimestamp()));
+            stmt.setLong(6, movement.getAccountID());
             stmt.executeUpdate();
             connection.closeConnection(stmt, con);
             resultSet.close();
@@ -54,24 +54,24 @@ public class MovementDaoImplementation implements MovementDao {
     }
 
     @Override
-    public ArrayList<Movement> listMovements(int idAccount) throws Exception {
-        String searchMovements="Select * from movements where account_id=?";
+    public ArrayList<Movement> listMovements(long idAccount) throws Exception {
+        String searchMovements="Select * from movement where account_id=?";
         ResultSet resultSet ;
         Movement movement;
 
         ArrayList<Movement> movements = new ArrayList<>();
         con = connection.openConnection();
             stmt=con.prepareStatement(searchMovements);
-            stmt.setInt(1, idAccount);
+            stmt.setLong(1, idAccount);
             resultSet=stmt.executeQuery();
             while(resultSet.next()){
                 movement=new Movement();
                 movement.setId(resultSet.getInt(1));
-                movement.setAmount((float) resultSet.getDouble(2));
-                movement.setBalance((float) resultSet.getDouble(3));
+                movement.setAmount(resultSet.getDouble(2));
+                movement.setBalance(resultSet.getDouble(3));
                 movement.setDescription(resultSet.getString(4));
                 movement.setTimestamp(resultSet.getTimestamp(5).toLocalDateTime());
-                movement.setAccountID(resultSet.getInt(6));
+                movement.setAccountID(resultSet.getLong(6));
                 movements.add(movement);
             }
        
