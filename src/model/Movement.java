@@ -19,11 +19,9 @@ public class Movement implements Serializable{
     private double amount;
     private double balance;
     private String description;
-<<<<<<< HEAD
-    private Long accountID;
-=======
+
     private long accountID;
->>>>>>> 2cd54c186c930960a878c2bf695874f91efbed5f
+
 
     public Movement() {
     }
@@ -31,11 +29,9 @@ public class Movement implements Serializable{
     public int getId() {
         return id;
     }
-<<<<<<< HEAD
-    public Long getAccountID(){
-=======
+
     public long getAccountID(){
->>>>>>> 2cd54c186c930960a878c2bf695874f91efbed5f
+
         return accountID;
     }
     public LocalDateTime getTimestamp() {
@@ -58,11 +54,9 @@ public class Movement implements Serializable{
         this.id = id;
     }
 
-<<<<<<< HEAD
-    public void setAccountID(Long accountID){
-=======
+
     public void setAccountID(long accountID){
->>>>>>> 2cd54c186c930960a878c2bf695874f91efbed5f
+
         this.accountID=accountID;
     }
     public void setTimestamp(LocalDateTime timestamp) {

@@ -44,11 +44,7 @@ public class MovementDaoImplementation implements MovementDao {
             stmt.setDouble(2, movement.getAmount());
             stmt.setDouble(3, movement.getBalance());
             stmt.setString(4, movement.getDescription());
-<<<<<<< HEAD
-            stmt.setTimestamp(4, Timestamp.valueOf(movement.getTimestamp()));
-=======
             stmt.setTimestamp(5, Timestamp.valueOf(movement.getTimestamp()));
->>>>>>> 2cd54c186c930960a878c2bf695874f91efbed5f
             stmt.setLong(6, movement.getAccountID());
             stmt.executeUpdate();
             connection.closeConnection(stmt, con);
